@@ -84,7 +84,7 @@ function psf_efacs_slow(Nvec=20; Np=33, Nsam=20000, σ_cen=0.25, μ_fwhm=nothing
 	# generate covariance matrix for padded region (to make shifts easy)
 	bigcov = psf_covariance(Np2, Nsam, σ_cen=σ_cen, μ_fwhm=μ_fwhm, σ_fwhm=σ_fwhm, objtype=objtype, μ_β=β)
 	
-	# SHOULD pass Dstar to Krylov instead of bigcov!!!!!
+	# SHOULD pass Dstar to Krylov instead of bigcov!!!!!xj
 	# compute Nvec eigenvectors
 	efacs = cov_efacs(bigcov, Nvec=Nvec)
 	return efacs

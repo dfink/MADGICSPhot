@@ -143,7 +143,7 @@ Return circularly symmetric Moffat model evaluated on a grid
 2024-Feb-08 - Modified to use Moffat_model!() for 20% speed increase \
                 About 14 ms per 1000 PSFs on M1 core \
 """
-function Moffat_model_samples(Np::Int, Npsf::Int; σ_cen=0.25, μ_fwhm=2.5, σ_fwhm=0.05, μ_β=4.8, σ_β=0.1, Δx=0.0, Δy=0.0, uniform=false, smear=true)
+function Moffat_model_samples(Np::Int, Npsf::Int; σ_cen=0.25, μ_fwhm=2.5, σ_fwhm=0.05, μ_β=4.8, σ_β=0.1, Δx=0.0, Δy=0.0, uniform=false, smear=false)
 	μ_cen = (Np+1)÷2 .+ [Δx,Δy]
 	cen   = uniform ? μ_cen .+ (rand(2,Npsf) .- 0.5) : μ_cen .+ randn(2,Npsf) .* σ_cen
 	fwhm  = μ_fwhm .+ randn(Npsf) .* σ_fwhm
@@ -1395,5 +1395,5 @@ function test_starfield()
 	p = heatmap(im, clims=(0,1), c=:cividis, axis=([],false))
 	return p
 end
-test_starfield()
+
 
